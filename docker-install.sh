@@ -1,6 +1,8 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get install -y sshpass
+
+sudo \cp docker /etc/default/ 
 sudo apt-get -y install \
     apt-transport-https \
     ca-certificates \

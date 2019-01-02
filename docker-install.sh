@@ -23,6 +23,14 @@ sudo apt-get -y install docker-ce
 
 #copy iptables port 
 sudo \cp rule.v4 /etc/iptables/rules.v4 
+
 sudo netfilter-persistent reload
 echo 'done install docker ce'
+
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+
+sudo service docker restart
+
 exit 0

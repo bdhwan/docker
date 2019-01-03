@@ -27,6 +27,9 @@
 -A RH-Firewall-1-INPUT -p udp -m state --state NEW -m udp --dport 7946 -j ACCEPT
 -A RH-Firewall-1-INPUT -p udp -m state --state NEW -m udp --dport 4789 -j ACCEPT
 
+#potainer
+-A RH-Firewall-1-INPUT -p udp -m state --state NEW -m udp --dport 9000 -j ACCEPT
+
 
 #for ssh psql cluster
 -A RH-Firewall-1-INPUT -p tcp -m state --state NEW -m tcp --dport 23 -j ACCEPT

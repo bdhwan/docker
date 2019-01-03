@@ -1,5 +1,9 @@
 #!/bin/bash
 sudo apt-get update
+
+sudo apt-get install -y rdate
+sudo rdate -s time.bora.net
+
 sudo apt-get install -y sshpass
 
 sudo \cp docker /etc/default/ 
@@ -32,5 +36,12 @@ sudo gpasswd -a $USER docker
 newgrp docker
 
 sudo service docker restart
+
+#potainer
+docker volume create portainer_data
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+
+
 
 exit 0

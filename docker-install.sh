@@ -1,8 +1,15 @@
 #!/bin/bash
 sudo apt-get update
+git clone https://github.com/bdhwan/docker.git
 
 sudo apt-get install -y rdate
 sudo rdate -s time.bora.net
+#timesync.sh 보고 추가하기
+sudo \cp rc.local /etc/rc.local 
+sudo \cp crontab /etc/crontab
+service cron reload
+
+
 
 sudo apt-get install -y sshpass
 
@@ -41,6 +48,10 @@ sudo service docker restart
 docker volume create portainer_data
 docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
+
+mkdir /portainer_data
+chmod 777 -R /portainer_data
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/portainer_data,target=/data portainer/portainer
 
 
 

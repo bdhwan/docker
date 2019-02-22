@@ -13,7 +13,7 @@ service cron reload
 
 sudo apt-get install -y sshpass
 
-sudo \cp docker /etc/default/ 
+
 sudo apt-get -y install \
     apt-transport-https \
     ca-certificates \
@@ -31,7 +31,7 @@ sudo add-apt-repository \
 
 sudo apt-get update
 sudo apt-get -y install docker-ce
-
+sudo \cp docker /etc/default/ 
 #copy iptables port 
 sudo \cp rule.v4 /etc/iptables/rules.v4 
 
@@ -45,10 +45,6 @@ newgrp docker
 sudo service docker restart
 
 #potainer
-docker volume create portainer_data
-docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-
-
 mkdir /portainer_data
 chmod 777 -R /portainer_data
 docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/portainer_data,target=/data portainer/portainer
